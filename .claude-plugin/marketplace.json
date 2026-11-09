@@ -1,0 +1,10 @@
+{
+  "name": "mrtaler",
+  "owner": {
+    "name": "mrTaler"
+  },
+  "metadata": {
+    "description": "Catalog of agent plugins by mrTaler. Each plugin lives in its own repository."
+  },
+  "plugins": []
+}
