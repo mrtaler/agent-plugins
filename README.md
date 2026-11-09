@@ -30,6 +30,16 @@ codex plugin marketplace add mrtaler/agent-plugins
 
 Then open `/plugins` in Codex and pick a plugin.
 
+Or install the first shared plugin directly:
+
+```sh
+codex plugin add window-todo@mrtaler
+```
+
+`window-todo` ships both client manifests in one repository. Claude uses its native pane;
+Codex uses MCP tools and a companion terminal pane. The catalog pins both clients to the
+same plugin commit; it contains no duplicated plugin implementation.
+
 ## Adding a plugin
 
 Add an entry to the `plugins` array of the catalog file for each agent the plugin supports.
@@ -66,10 +76,13 @@ OpenAI Codex, `.agents/plugins/marketplace.json`:
 ```
 
 Both formats accept an optional `ref` (branch or tag) or `sha` in `source` to pin the plugin.
+For a plugin supported by both clients, update the two source revisions together after the
+plugin commit or tag is available in its repository. Prefer an immutable revision for a release.
 
-Check the Claude Code file before committing:
+Check both catalogs and the Claude Code format before committing:
 
 ```sh
+node scripts/validate-catalogs.cjs
 claude plugin validate --strict .
 ```
 
