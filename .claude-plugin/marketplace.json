@@ -6,5 +6,16 @@
   "metadata": {
     "description": "Catalog of agent plugins by mrTaler. Each plugin lives in its own repository."
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "window-todo",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/mrtaler/window-todo.git"
+      },
+      "description": "The task plan with a pane, status line and gate, plus a per-session list of open items fed by a small observer model.",
+      "category": "productivity",
+      "keywords": ["plan", "todo", "tasks", "pane", "status-line"]
+    }
+  ]
 }
