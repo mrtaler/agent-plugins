@@ -37,8 +37,9 @@ codex plugin add window-todo@mrtaler
 ```
 
 `window-todo` ships both client manifests in one repository. Claude uses its native pane;
-Codex uses MCP tools and a companion terminal pane. The catalog pins both clients to the
-same plugin commit; it contains no duplicated plugin implementation.
+Codex uses MCP tools and a companion terminal pane. Both catalogs use the plugin repository's
+default branch, so plugin releases update independently of catalog releases. The catalog
+contains no duplicated plugin implementation.
 
 ## Adding a plugin
 
@@ -76,8 +77,8 @@ OpenAI Codex, `.agents/plugins/marketplace.json`:
 ```
 
 Both formats accept an optional `ref` (branch or tag) or `sha` in `source` to pin the plugin.
-For a plugin supported by both clients, update the two source revisions together after the
-plugin commit or tag is available in its repository. Prefer an immutable revision for a release.
+Leave those fields unset for plugins that should follow their repository's default branch.
+For a plugin deliberately pinned to a revision, keep both client catalogs in sync.
 
 Check both catalogs and the Claude Code format before committing:
 

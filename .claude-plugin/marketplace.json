@@ -11,8 +11,7 @@
       "name": "window-todo",
       "source": {
         "source": "url",
-        "url": "https://github.com/mrtaler/window-todo.git",
-        "sha": "0bc100852908e99a1e4f4f9c7188134856e98a08"
+        "url": "https://github.com/mrtaler/window-todo.git"
       },
       "description": "The task plan with a pane, status line and gate, plus a per-session list of open items fed by a small observer model.",
       "category": "productivity",
