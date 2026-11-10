@@ -16,7 +16,8 @@ for (const [client, catalog] of [['Claude', claude], ['Codex', codex]]) {
     names.add(entry.name)
     assert.ok(entry.source && typeof entry.source === 'object', `${client}/${entry.name}: missing source`)
     if (entry.source.source === 'url') assert.match(entry.source.url, /^https:\/\/[^\s]+\.git$/, `${client}/${entry.name}: expected a Git URL`)
-    if (entry.source.sha !== undefined) assert.match(entry.source.sha, /^[a-f0-9]{40}$/, `${client}/${entry.name}: invalid commit SHA`)
+    assert.match(String(entry.source.ref ?? ''), /^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/, `${client}/${entry.name}: ref must be a release tag such as v1.2.3`)
+    assert.equal(entry.source.sha, undefined, `${client}/${entry.name}: pin by ref (release tag), not sha`)
     if (client === 'Codex') {
       assert.equal(entry.policy?.installation, 'AVAILABLE', `${entry.name}: explicit installation policy required`)
       assert.ok(typeof entry.category === 'string', `${entry.name}: category required`)

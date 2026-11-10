@@ -37,9 +37,11 @@ codex plugin add window-todo@mrtaler
 ```
 
 `window-todo` ships both client manifests in one repository. Claude uses its native pane;
-Codex uses MCP tools and a companion terminal pane. Both catalogs use the plugin repository's
-default branch, so plugin releases update independently of catalog releases. The catalog
-contains no duplicated plugin implementation.
+Codex uses MCP tools and a companion terminal pane.
+
+Every entry points at a release tag of its plugin repository through `source.ref`. A plugin
+release opens a pull request here that moves `ref` to the new tag in both catalogs, so the
+catalog lists only released versions.
 
 ## Adding a plugin
 
@@ -54,7 +56,8 @@ Claude Code, `.claude-plugin/marketplace.json`:
   "name": "<plugin>",
   "source": {
     "source": "url",
-    "url": "https://github.com/mrtaler/<repo>.git"
+    "url": "https://github.com/mrtaler/<repo>.git",
+    "ref": "v<version>"
   }
 }
 ```
@@ -66,7 +69,8 @@ OpenAI Codex, `.agents/plugins/marketplace.json`:
   "name": "<plugin>",
   "source": {
     "source": "url",
-    "url": "https://github.com/mrtaler/<repo>.git"
+    "url": "https://github.com/mrtaler/<repo>.git",
+    "ref": "v<version>"
   },
   "policy": {
     "installation": "AVAILABLE",
@@ -76,9 +80,8 @@ OpenAI Codex, `.agents/plugins/marketplace.json`:
 }
 ```
 
-Both formats accept an optional `ref` (branch or tag) or `sha` in `source` to pin the plugin.
-Leave those fields unset for plugins that should follow their repository's default branch.
-For a plugin deliberately pinned to a revision, keep both client catalogs in sync.
+Set `ref` to the plugin's release tag (`"ref": "v1.2.3"`) in both formats. Both client catalogs
+must select the same tag for a plugin they share.
 
 Check both catalogs and the Claude Code format before committing:
 
