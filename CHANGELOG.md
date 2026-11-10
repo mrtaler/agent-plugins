@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/mrtaler/agent-plugins/compare/v1.5.0...v1.6.0) (2026-11-10)
+
+### Features
+
+* **catalog:** accept Codex npm entries served from registry/ ([d5cf13d](https://github.com/mrtaler/agent-plugins/commit/d5cf13dad09f86c8ab7ddfa75e02942ecc4a783a))
+
 ## [1.5.0](https://github.com/mrtaler/agent-plugins/compare/v1.4.0...v1.5.0) (2026-11-10)
 
 ### Features
