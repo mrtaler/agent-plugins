@@ -43,6 +43,12 @@ Every entry points at a release tag of its plugin repository through `source.ref
 release opens a pull request here that moves `ref` to the new tag in both catalogs, so the
 catalog lists only released versions.
 
+`window-todo` keeps its shared core and client adapters in one source repository. Its MR
+pipeline builds and tests an installable package; after merge, semantic-release updates
+the version, rebuilds and validates the package, and publishes the tagged runtime. The
+release bot then proposes the new tag here. Source refactoring and generated JS therefore
+do not require copied implementations in this catalog.
+
 ## Adding a plugin
 
 Add an entry to the `plugins` array of the catalog file for each agent the plugin supports.
