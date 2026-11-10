@@ -1,3 +1,14 @@
+## [1.1.0](https://github.com/mrtaler/agent-plugins/compare/v1.0.0...v1.1.0) (2026-11-10)
+
+### Features
+
+* **catalog:** publish window-todo for Claude and Codex ([30c5041](https://github.com/mrtaler/agent-plugins/commit/30c50419119507fbda4c4a6a8d67da4310a87e1d))
+
+### Bug Fixes
+
+* **catalog:** follow plugin releases instead of pinning a commit ([7e8615c](https://github.com/mrtaler/agent-plugins/commit/7e8615c045045805a638550184c81748d4d969c9))
+* **catalog:** pin window-todo to its release tag ([2ff2311](https://github.com/mrtaler/agent-plugins/commit/2ff23114496db95b078af83c8472e128e9fa0740))
+
 ## 1.0.0 (2026-11-09)
 
 ### Features
