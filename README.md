@@ -39,15 +39,17 @@ codex plugin add window-todo@mrtaler
 `window-todo` ships both client manifests in one repository. Claude uses its native pane;
 Codex uses MCP tools and a companion terminal pane.
 
-Every entry points at a release tag of its plugin repository through `source.ref`. A plugin
-release opens a pull request here that moves `ref` to the new tag in both catalogs, so the
-catalog lists only released versions.
+Every Claude Code entry points at a release tag of its plugin repository through `source.ref`.
+A Codex entry is either the same Git source pinned by the same tag, or an npm source served
+by the static npm registry in `registry/`: `registry/<package>` lists the released
+versions, and each version's tarball is the npm-format archive attached to the plugin's
+GitHub release. Either way the catalog lists only released versions.
 
-`window-todo` keeps its shared core and client adapters in one source repository. Its MR
-pipeline builds and tests an installable package; after merge, semantic-release updates
-the version, rebuilds and validates the package, and publishes the tagged runtime. The
-release bot then proposes the new tag here. Source refactoring and generated JS therefore
-do not require copied implementations in this catalog.
+`window-todo` keeps its shared core and client adapters in one source repository and cuts
+one release tag per version. Claude Code installs that tag from sources; Codex installs the
+npm-format archive of the same release through `registry/window-todo`. The plugin's release
+bot opens a pull request here that moves the Claude `ref`, sets the Codex `version` and adds
+the version to `registry/window-todo`, so the three stay in step.
 
 ## Adding a plugin
 
@@ -89,10 +91,25 @@ OpenAI Codex, `.agents/plugins/marketplace.json`:
 Set `ref` to the plugin's release tag (`"ref": "v1.2.3"`) in both formats. Both client catalogs
 must select the same tag for a plugin they share.
 
+A Codex entry may instead install the release archive through the registry in this repository:
+
+```json
+"source": {
+  "source": "npm",
+  "package": "<plugin>",
+  "version": "<version>",
+  "registry": "https://raw.githubusercontent.com/mrtaler/agent-plugins/master/registry"
+}
+```
+
+`package` is the plugin name, `version` a stable `X.Y.Z` listed in `registry/<plugin>`, and the
+Claude Code entry's `ref` must be `v<version>`. Codex accepts only `https` registries.
+
 Check both catalogs and the Claude Code format before committing:
 
 ```sh
 node scripts/validate-catalogs.cjs
+node --test scripts/*.spec.cjs
 claude plugin validate --strict .
 ```
 
