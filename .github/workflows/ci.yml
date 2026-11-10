@@ -27,6 +27,9 @@ jobs:
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code@2.1.321
 
+      - name: Check catalog entries and shared source revisions
+        run: node scripts/validate-catalogs.cjs
+
       # An empty catalog always carries the warning "Marketplace has no plugins defined",
       # so --strict is applied once the Claude catalog lists at least one plugin.
       - name: Validate the Claude Code catalog

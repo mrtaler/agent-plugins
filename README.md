@@ -30,6 +30,19 @@ codex plugin marketplace add mrtaler/agent-plugins
 
 Then open `/plugins` in Codex and pick a plugin.
 
+Or install the first shared plugin directly:
+
+```sh
+codex plugin add window-todo@mrtaler
+```
+
+`window-todo` ships both client manifests in one repository. Claude uses its native pane;
+Codex uses MCP tools and a companion terminal pane.
+
+Every entry points at a release tag of its plugin repository through `source.ref`. A plugin
+release opens a pull request here that moves `ref` to the new tag in both catalogs, so the
+catalog lists only released versions.
+
 ## Adding a plugin
 
 Add an entry to the `plugins` array of the catalog file for each agent the plugin supports.
@@ -43,7 +56,8 @@ Claude Code, `.claude-plugin/marketplace.json`:
   "name": "<plugin>",
   "source": {
     "source": "url",
-    "url": "https://github.com/mrtaler/<repo>.git"
+    "url": "https://github.com/mrtaler/<repo>.git",
+    "ref": "v<version>"
   }
 }
 ```
@@ -55,7 +69,8 @@ OpenAI Codex, `.agents/plugins/marketplace.json`:
   "name": "<plugin>",
   "source": {
     "source": "url",
-    "url": "https://github.com/mrtaler/<repo>.git"
+    "url": "https://github.com/mrtaler/<repo>.git",
+    "ref": "v<version>"
   },
   "policy": {
     "installation": "AVAILABLE",
@@ -65,11 +80,13 @@ OpenAI Codex, `.agents/plugins/marketplace.json`:
 }
 ```
 
-Both formats accept an optional `ref` (branch or tag) or `sha` in `source` to pin the plugin.
+Set `ref` to the plugin's release tag (`"ref": "v1.2.3"`) in both formats. Both client catalogs
+must select the same tag for a plugin they share.
 
-Check the Claude Code file before committing:
+Check both catalogs and the Claude Code format before committing:
 
 ```sh
+node scripts/validate-catalogs.cjs
 claude plugin validate --strict .
 ```
 
