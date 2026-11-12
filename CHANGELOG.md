@@ -1,3 +1,9 @@
+## [1.10.0](https://github.com/mrtaler/agent-plugins/compare/v1.9.0...v1.10.0) (2026-11-12)
+
+### Features
+
+* window-todo 0.11.0 ([1a32654](https://github.com/mrtaler/agent-plugins/commit/1a326542b274ea4dd101016b699a1e89ecb54ba9))
+
 ## [1.9.0](https://github.com/mrtaler/agent-plugins/compare/v1.8.0...v1.9.0) (2026-11-10)
 
 ### Features
