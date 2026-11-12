@@ -9,7 +9,7 @@
       "source": {
         "source": "npm",
         "package": "window-todo",
-        "version": "0.11.0",
+        "version": "0.11.1",
         "registry": "https://raw.githubusercontent.com/mrtaler/agent-plugins/master/registry"
       },
       "policy": {
