@@ -1,7 +1,7 @@
 {
   "name": "window-todo",
   "dist-tags": {
-    "latest": "0.11.1"
+    "latest": "0.11.2"
   },
   "versions": {
     "0.8.0": {
@@ -42,6 +42,14 @@
       "dist": {
         "tarball": "https://github.com/mrtaler/window-todo/releases/download/v0.11.1/window-todo-0.11.1.tgz",
         "integrity": "sha512-C71A2Q8bZwFJZ6iiT49DIPzK+2A/3A1eQaHTro7Jm3t6cHUIqNxK/a5/HYn0DczbCRYFXa+v42jz+1p18o2G4A=="
+      }
+    },
+    "0.11.2": {
+      "name": "window-todo",
+      "version": "0.11.2",
+      "dist": {
+        "tarball": "https://github.com/mrtaler/window-todo/releases/download/v0.11.2/window-todo-0.11.2.tgz",
+        "integrity": "sha512-nPlr+E6UIFlWV8Fff+XHlC2XtvEyQ1FmzDEB8ghPF48o4OKF3TgYc9bJ7BzUyP12K3MbQOHrpNZaFtb0MQQEIg=="
       }
     }
   }
